@@ -18,7 +18,8 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
                 CREATE TABLE If NOT EXISTS Users
                 (
                     id INTEGER PRIMARY KEY,
-                    name text
+                    name text,
+                    password blob
                 );
                 """);
 
@@ -41,18 +42,17 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
                 """);
             if (userCount == 0)
             {
-                const string name = "Serega";
+                const string name = "admin";
+                const string password = "admin";
 
                 connection.Execute(new CommandDefinition("""
 
-                    INSERT INTO Users (id, name)
+                    INSERT INTO Users (id, name, password)
                     VALUES  
-                    (0, @Name)
+                    (0, @Name, @Password)
 
-                    """, new { Name = name}));
+                    """, new { Name = name, Password = password}));
             }
-
-
         }
     }
 }
