@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using ConsoleCs_TaskManagerLogic.Infrastructure.Halpers;
+using Dapper;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
 {
@@ -51,7 +52,9 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
                     VALUES  
                     (0, @Name, @Password)
 
-                    """, new { Name = name, Password = password}));
+                    """, 
+                    new { Name = name, 
+                    Password = HashHelper.GetHash(password) }));
             }
         }
     }
