@@ -1,4 +1,6 @@
-﻿namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
+﻿using Dapper;
+
+namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
 {
     public class DbInitializer
     {
@@ -11,6 +13,15 @@
         public void Initialize()
         {
             using var connection = _connectionFactory.CreateConnection();
+
+            connection.Execute("""
+                CREATE TABLE If NOT EXISTS Roles
+                (
+                    id INTEGER PRIMARY KEY,
+                    name text,
+                    rights int
+                );
+                """);
 
 
         }

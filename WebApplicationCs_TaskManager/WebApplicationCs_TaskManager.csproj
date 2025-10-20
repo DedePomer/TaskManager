@@ -10,4 +10,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleCs_TaskManagerLogic\ConsoleCs_TaskManagerLogic.csproj" />
+  </ItemGroup>
+
 </Project>
