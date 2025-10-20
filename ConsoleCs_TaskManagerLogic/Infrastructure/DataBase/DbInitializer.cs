@@ -15,21 +15,24 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
             using var connection = _connectionFactory.CreateConnection();
 
             connection.Execute("""
-                CREATE TABLE If NOT EXISTS TextTasks
-                (
-                    id INTEGER PRIMARY KEY,
-                    text text,
-                    discription text
-                );
-                """);
-
-            connection.Execute("""
                 CREATE TABLE If NOT EXISTS Users
                 (
                     id INTEGER PRIMARY KEY,
                     name text
                 );
                 """);
+
+            connection.Execute("""
+                CREATE TABLE If NOT EXISTS TextTasks
+                (
+                    id INTEGER PRIMARY KEY,
+                    text text,
+                    discription text,                    
+                    FOREIGN KEY(userId) REFERENCES Users(id)
+                );
+                """);
+
+
 
 
         }
