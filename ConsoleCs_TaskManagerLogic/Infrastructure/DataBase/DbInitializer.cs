@@ -34,6 +34,24 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
 
 
 
+            var userCount = connection.ExecuteScalar<int>("""
+
+                SELECT COUNT(*) FROM Users   
+
+                """);
+            if (userCount == 0)
+            {
+                const string name = "Serega";
+
+                connection.Execute(new CommandDefinition("""
+
+                    INSERT INTO Users (id, name)
+                    VALUES  
+                    (0, @Name)
+
+                    """, new { Name = name}));
+            }
+
 
         }
     }
