@@ -23,14 +23,13 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
                 );
                 """);
 
-            //connection.Execute("""
-            //    CREATE TABLE If NOT EXISTS TextTasks
-            //    (
-            //        id INTEGER PRIMARY KEY,
-            //        text text,
-            //        discription text
-            //    );
-            //    """);
+            connection.Execute("""
+                CREATE TABLE If NOT EXISTS Users
+                (
+                    id INTEGER PRIMARY KEY,
+                    name text
+                );
+                """);
 
 
         }
