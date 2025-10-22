@@ -3,6 +3,7 @@
     public interface IUserService
     {
         void RegisterUser(string login, string password);
-        bool IsUserWithThisLoginExist(string login);
+        bool IsUserExist(string login);
+        bool IsUserExist(string login, string password);
     }
 }

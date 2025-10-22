@@ -18,7 +18,7 @@ namespace WebApplicationCs_TaskManager.Controllers
         {
             try
             {
-                if (!_userService.IsUserWithThisLoginExist(login))
+                if (!_userService.IsUserExist(login))
                 {
                     _userService.RegisterUser(login, password);
                     return Ok();

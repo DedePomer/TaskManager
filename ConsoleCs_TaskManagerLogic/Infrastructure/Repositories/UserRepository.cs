@@ -27,7 +27,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
                     Pasword = HashHelper.GetHash(password) }));
         }
 
-        public bool IsUserWithThisLoginExist(string login)
+        public bool IsUserExist(string login)
         {
             using var connection = _connection.CreateConnection();
 
@@ -42,5 +42,26 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
             
             return isExist;
         }
+
+        public bool IsUserExist(string login, string password)
+        {
+
+            using var connection = _connection.CreateConnection();
+
+            bool isExist = connection.ExecuteScalar<bool>(new CommandDefinition("""
+
+                SELECT EXISTS
+                ( SELECT 1 FROM Users
+                 WHERE name = @Name AND password = @Password);
+                
+                """,
+                new { Name = login,
+                Password = HashHelper.GetHash(password)
+                }));
+
+            return isExist;
+        }
+
+
     }
 }

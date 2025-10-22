@@ -11,7 +11,6 @@ namespace WebApplicationCs_TaskManager.Controllers
         public AuthController(IUserService userService)
         {
             _userService = userService;
-
         }
 
         [HttpPost]
@@ -19,7 +18,14 @@ namespace WebApplicationCs_TaskManager.Controllers
         {
             try
             {
-               
+                if (_userService.IsUserExist(login, password))
+                {
+                    
+                }
+                else 
+                {
+                    return Unauthorized("Invalid login or password");
+                }
             }
             catch (Exception e)
             {
