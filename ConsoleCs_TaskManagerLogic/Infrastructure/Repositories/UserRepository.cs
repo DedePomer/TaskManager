@@ -27,11 +27,20 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
                     Pasword = HashHelper.GetHash(password) }));
         }
 
-        public bool IsUserExists(string login, string password)
+        public bool IsUserExist(string login)
         {
             using var connection = _connection.CreateConnection();
 
-            throw new NotImplementedException();
+            bool isExist = connection.ExecuteScalar<bool>(new CommandDefinition("""
+
+                SELECT EXISTS
+                ( SELECT 1 FROM Users
+                 WHERE name = @Name);
+                
+                """, 
+                new { Name = login }));
+            
+            return isExist;
         }
     }
 }

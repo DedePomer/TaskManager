@@ -12,9 +12,9 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Services
 
 
 
-        public bool IsUserExist(string login, string password)
+        public bool IsUserExist(string login)
         {
-            throw new NotImplementedException();
+            return _repository.IsUserExist(login);
         }
 
         public void RegisterUser(string login, string password)

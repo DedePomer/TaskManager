@@ -18,8 +18,16 @@ namespace WebApplicationCs_TaskManager.Controllers
         {
             try
             {
-                _userService.RegisterUser(login, password);
-                return Ok();
+                if (!_userService.IsUserExist(login))
+                {
+                    _userService.RegisterUser(login, password);
+                    return Ok();
+                }
+                else 
+                {
+                    return Conflict("User with this login already exists");
+                }
+                
             }
             catch (Exception e)
             {
