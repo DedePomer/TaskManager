@@ -1,4 +1,4 @@
-﻿using ConsoleCs_TaskManagerLogic.Infrastructure.Halpers;
+﻿using ConsoleCs_TaskManagerLogic.Infrastructure.Helpers;
 using Dapper;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase

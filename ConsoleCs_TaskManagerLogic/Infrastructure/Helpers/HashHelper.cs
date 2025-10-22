@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleCs_TaskManagerLogic.Infrastructure.Halpers
+namespace ConsoleCs_TaskManagerLogic.Infrastructure.Helpers
 {
     internal static class HashHelper
     {
