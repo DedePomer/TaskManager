@@ -14,7 +14,7 @@ namespace WebApplicationCs_TaskManager.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Authenticate(string login, string password)
         {
             try
