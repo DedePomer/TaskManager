@@ -12,11 +12,11 @@ namespace WebApplicationCs_TaskManager.Controllers
         {
             try
             {
-                
+                return Ok();
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                return StatusCode(500, e.Message);
             }
         }
     }
