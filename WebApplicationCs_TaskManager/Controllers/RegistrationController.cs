@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApplicationCs_TaskManager.Controllers
 {
     [ApiController]
-    [Route("reg")]
+    [Route("registration")]
     public class RegistrationController : Controller
     {
         private readonly IUserService _userService;
