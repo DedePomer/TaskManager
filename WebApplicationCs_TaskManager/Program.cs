@@ -14,7 +14,7 @@ namespace WebApplicationCs_TaskManager
 
             builder.Services.AddControllers();
             builder.Services.AddDataBase(builder.Configuration);
-            builder.Services.AddServices();
+            builder.Services.AddServices(builder.Configuration);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
