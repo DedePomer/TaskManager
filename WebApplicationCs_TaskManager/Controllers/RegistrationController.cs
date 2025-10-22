@@ -14,7 +14,7 @@ namespace WebApplicationCs_TaskManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(string login, string password)
+        public ActionResult Registration(string login, string password)
         {
             try
             {
