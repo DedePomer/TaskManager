@@ -27,7 +27,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
                     Pasword = HashHelper.GetHash(password) }));
         }
 
-        public bool IsUserExist(string login)
+        public bool IsUserWithThisLoginExist(string login)
         {
             using var connection = _connection.CreateConnection();
 

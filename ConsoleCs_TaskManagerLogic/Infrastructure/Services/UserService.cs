@@ -12,9 +12,9 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Services
 
 
 
-        public bool IsUserExist(string login)
+        public bool IsUserWithThisLoginExist(string login)
         {
-            return _repository.IsUserExist(login);
+            return _repository.IsUserWithThisLoginExist(login);
         }
 
         public void RegisterUser(string login, string password)

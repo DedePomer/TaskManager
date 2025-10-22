@@ -3,6 +3,6 @@
     public interface IUserRepository
     {
         void AddUser(string login, string password);
-        bool IsUserExist(string login);
+        bool IsUserWithThisLoginExist(string login);
     }
 }
