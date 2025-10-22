@@ -29,7 +29,8 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
                 (
                     id INTEGER PRIMARY KEY,
                     text text,
-                    discription text,                    
+                    discription text, 
+                    userId INTEGER,
                     FOREIGN KEY(userId) REFERENCES Users(id)
                 );
                 """);
