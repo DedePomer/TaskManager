@@ -1,5 +1,6 @@
 ﻿using ConsoleCs_TaskManagerLogic.Infrastructure.DataBase;
 using ConsoleCs_TaskManagerLogic.Infrastructure.Repositories;
+using ConsoleCs_TaskManagerLogic.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.Extensions
@@ -9,7 +10,9 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Extensions
         public static void AddServices(this IServiceCollection services)
         {
             services.AddTransient<DbInitializer>();
-            services.AddTransient<IUserRepository, UserRepository>();
+
+            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IUserService, UserService>();
         }
     }
 }
