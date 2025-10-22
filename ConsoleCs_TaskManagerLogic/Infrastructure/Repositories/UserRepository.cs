@@ -1,4 +1,6 @@
 ﻿using ConsoleCs_TaskManagerLogic.Infrastructure.DataBase;
+using ConsoleCs_TaskManagerLogic.Infrastructure.Helpers;
+using Dapper;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 {
@@ -13,11 +15,22 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 
         public void AddUser(string login, string password)
         {
-            throw new NotImplementedException();
+            using var connection = _connection.CreateConnection();
+
+            connection.Execute(new CommandDefinition("""
+
+                INSERT INTO Users (name,password)
+                VALUES (@Name, @Pasword);
+
+                """,
+                new { Name = login,
+                    Pasword = HashHelper.GetHash(password) }));
         }
 
         public bool IsUserExists(string login, string password)
         {
+            using var connection = _connection.CreateConnection();
+
             throw new NotImplementedException();
         }
     }
