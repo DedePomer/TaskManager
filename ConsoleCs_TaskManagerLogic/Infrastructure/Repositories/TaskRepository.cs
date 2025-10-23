@@ -1,19 +1,19 @@
 ﻿using ConsoleCs_TaskManagerLogic.Infrastructure.DataBase;
-using ConsoleCs_TaskManagerLogic.Infrastructure.Helpers;
 using ConsoleCs_TaskManagerLogic.Model.Interfaces;
 using Dapper;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 {
     public class TaskRepository(IDbConnectionFactory _connection) : ITaskRepository
     {
-        public void AddTextTask(string text, int userId, string? description = null)
+        public async Task AddTextTaskAsync(string text, int userId, string? description = null)
         {
             using var connection = _connection.CreateConnection();
 
-            connection.Execute(new CommandDefinition("""
+            await connection.ExecuteAsync(new CommandDefinition("""
 
-                    INSERT INTO Tasks (text, discription, userId)
+                    INSERT INTO TextTasks (text, discription, userId)
                     VALUES  
                     (@Text, @Description, @UserId)
 
@@ -26,14 +26,28 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
                    }));
         }
 
-        public void DeleteTask(int id)
+        public async Task DeleteTaskAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public ITask GetAllTask(int id)
+        public async Task<ITask> GetAllTaskAsync(int userId)
         {
-            throw new NotImplementedException();
+            using var connection = _connection.CreateConnection();
+
+            await connection.ExecuteAsync(new CommandDefinition("""
+
+                    INSERT INTO TextTasks (text, discription, userId)
+                    VALUES  
+                    (@Text, @Description, @UserId)
+
+                    """,
+                   new
+                   {
+                       Text = text,
+                       Description = description,
+                       UserId = userId
+                   }));
         }
     }
 }

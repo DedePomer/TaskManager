@@ -51,7 +51,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
 
                     INSERT INTO Users (id, name, password)
                     VALUES  
-                    (0, @Name, @Password)
+                    (1, @Name, @Password)
 
                     """, 
                     new { Name = name, 

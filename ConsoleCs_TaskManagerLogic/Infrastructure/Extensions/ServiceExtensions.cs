@@ -14,7 +14,9 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Extensions
             services.AddTransient<DbInitializer>();
 
             services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<ITaskRepository, TaskRepository>();
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<TaskService>();// чёта не захотелось делать интерфе
 
             services.AddScoped<ITokenService, JwtService>();
             services.Configure<AuthSettings>(configuration.GetSection("AuthSettings"));
