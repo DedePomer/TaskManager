@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApplicationCs_TaskManager.Controllers
 {
     [ApiController]
-    [Route("Task")]
+    [Route("api")]
     [Authorize]
     public class TaskController: ControllerBase
     {
@@ -19,7 +19,7 @@ namespace WebApplicationCs_TaskManager.Controllers
         {
             try
             {
-
+                var login = User.FindFirst("name")?.Value; 
             }
             catch (Exception e)
             {
