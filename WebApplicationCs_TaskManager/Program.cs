@@ -16,6 +16,7 @@ namespace WebApplicationCs_TaskManager
             builder.Services.AddDataBase(builder.Configuration);
             builder.Services.AddServices(builder.Configuration);
             builder.Services.AddAuth(builder.Configuration);
+            //builder.Services.AddAuthorization();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -37,9 +38,9 @@ namespace WebApplicationCs_TaskManager
             }
 
             app.UseHttpsRedirection();
-
-            app.UseAuthorization();
+            
             app.UseAuthentication();
+            app.UseAuthorization();
 
 
 
