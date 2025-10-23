@@ -1,21 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplicationCs_TaskManager.Controllers
 {
     [ApiController]
-    [Route("TaskOption")]
+    [Route("Task")]
+    [Authorize]
     public class TaskController: ControllerBase
     {
-        //потом в конструктор логер добавлю
-        public TaskController() 
+        [HttpGet]     
+        public ActionResult GetAllTask(int taskId)
         {
-            
+            return Ok();
         }
-
-        //[HttpGet("{Id}")]
-        //public ActionResult<> GetAllTask(int taskId) 
-        //{
-            
-        //}
     }
 }
