@@ -27,6 +27,21 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
                     Pasword = HashHelper.GetHash(password) }));
         }
 
+        public int GetUserIdByName(string login)
+        {
+            using var connection = _connection.CreateConnection();
+
+            int id = connection.ExecuteScalar<int>(new CommandDefinition("""
+
+                 SELECT id FROM Users
+                 WHERE name = @Name;
+                
+                """,
+               new { Name = login }));
+
+            return id;
+        }
+
         public bool IsUserExist(string login)
         {
             using var connection = _connection.CreateConnection();
@@ -61,6 +76,8 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 
             return isExist;
         }
+
+
 
 
     }

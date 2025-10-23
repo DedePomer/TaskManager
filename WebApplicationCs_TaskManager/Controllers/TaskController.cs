@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ConsoleCs_TaskManagerLogic.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplicationCs_TaskManager.Controllers
@@ -22,7 +23,7 @@ namespace WebApplicationCs_TaskManager.Controllers
                 var login = User.FindFirst("name")?.Value;
                 if (login != null)
                 {
-
+                    
                 }
                 else 
                 {

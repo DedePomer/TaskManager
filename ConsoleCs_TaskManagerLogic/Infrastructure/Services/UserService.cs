@@ -10,7 +10,10 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Services
             _repository = repository;
         }
 
-
+        public int GetUserIdByName(string login)
+        {
+            return _repository.GetUserIdByName(login);
+        }
 
         public bool IsUserExist(string login)
         {
