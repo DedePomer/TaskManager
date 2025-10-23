@@ -1,5 +1,9 @@
 ﻿using ConsoleCs_TaskManagerLogic.Model.DataType;
 using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.Services
 {
@@ -7,8 +11,18 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Services
     {
         public string GenerateToken(string login)
         {
-            var token = 
-            throw new NotImplementedException();
+            var claims = new List<Claim>
+            {
+                new Claim("name", login)
+            };
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.UtcNow.Add(options.Value.ExpireMinutes),
+                signingCredentials: new SigningCredentials(
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Value.SecretKey)),
+                    SecurityAlgorithms.HmacSha256));
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

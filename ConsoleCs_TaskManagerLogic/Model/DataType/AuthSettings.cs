@@ -2,7 +2,7 @@
 {
     public class AuthSettings
     {
-        public string? SecretKey { get; set; }
-        public TimeSpan? ExpireMinutes { get; set; }
+        public required string SecretKey { get; init; }
+        public required TimeSpan ExpireMinutes { get; init; }
     }
 }
