@@ -2,30 +2,28 @@
 using ConsoleCs_TaskManagerLogic.Infrastructure.Helpers;
 using ConsoleCs_TaskManagerLogic.Model.Interfaces;
 using Dapper;
-using System.Xml.Linq;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 {
     public class TaskRepository(IDbConnectionFactory _connection) : ITaskRepository
     {
-        public void AddTextTask(string text, string? description = null)
+        public void AddTextTask(string text, int userId, string? description = null)
         {
             using var connection = _connection.CreateConnection();
 
             connection.Execute(new CommandDefinition("""
 
-                    INSERT INTO Tasks (id, name, password)
+                    INSERT INTO Tasks (text, discription, userId)
                     VALUES  
-                    (0, @Name, @Password)
+                    (@Text, @Description, @UserId)
 
                     """,
                    new
                    {
-                       Name = name,
-                       Password = HashHelper.GetHash(password)
+                       Text = text,
+                       Description = description,
+                       UserId = userId
                    }));
-
-            throw new NotImplementedException();
         }
 
         public void DeleteTask(int id)
@@ -33,7 +31,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public ITask GetAllTask(string login)
+        public ITask GetAllTask(int id)
         {
             throw new NotImplementedException();
         }
