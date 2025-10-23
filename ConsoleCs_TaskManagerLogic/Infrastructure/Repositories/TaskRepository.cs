@@ -1,7 +1,6 @@
 ﻿using ConsoleCs_TaskManagerLogic.Infrastructure.DataBase;
-using ConsoleCs_TaskManagerLogic.Model.Interfaces;
+using ConsoleCs_TaskManagerLogic.Model.DataType;
 using Dapper;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 {
@@ -31,23 +30,22 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<ITask> GetAllTaskAsync(int userId)
+        public async Task<IEnumerable<TextTask>> GetAllTaskAsync(int userId)
         {
             using var connection = _connection.CreateConnection();
 
-            await connection.ExecuteAsync(new CommandDefinition("""
+            IEnumerable<TextTask> tasks = await connection.QueryAsync<TextTask>(new CommandDefinition("""
 
-                    INSERT INTO TextTasks (text, discription, userId)
-                    VALUES  
-                    (@Text, @Description, @UserId)
+                SELECT * FROM TextTasks
+                WHERE userId = @UserId;
+                
+                """,
+                new
+                {
+                    UserId = userId
+                }));
 
-                    """,
-                   new
-                   {
-                       Text = text,
-                       Description = description,
-                       UserId = userId
-                   }));
+            return tasks;
         }
     }
 }
