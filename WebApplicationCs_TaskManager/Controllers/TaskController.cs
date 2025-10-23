@@ -19,7 +19,15 @@ namespace WebApplicationCs_TaskManager.Controllers
         {
             try
             {
-                var login = User.FindFirst("name")?.Value; 
+                var login = User.FindFirst("name")?.Value;
+                if (login != null)
+                {
+
+                }
+                else 
+                {
+                    return Unauthorized();
+                }
             }
             catch (Exception e)
             {
