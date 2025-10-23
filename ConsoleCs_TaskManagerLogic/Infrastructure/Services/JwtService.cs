@@ -17,7 +17,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Services
             };
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.Add(options.Value.ExpireMinutes),
+                expires: DateTime.UtcNow.Add(options.Value.Expire),
                 signingCredentials: new SigningCredentials(
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Value.SecretKey)),
                     SecurityAlgorithms.HmacSha256));

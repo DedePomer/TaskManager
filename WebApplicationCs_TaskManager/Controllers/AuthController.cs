@@ -5,22 +5,16 @@ namespace WebApplicationCs_TaskManager.Controllers
 {
     [ApiController]
     [Route("auth")]
-    public class AuthController : Controller
-    {
-        private readonly IUserService _userService;
-        public AuthController(IUserService userService)
-        {
-            _userService = userService;
-        }
-
+    public class AuthController(IUserService userService, ITokenService tokenService) : Controller
+    {        
         [HttpPost]
         public ActionResult Authenticate(string login, string password)
         {
             try
             {
-                if (_userService.IsUserExist(login, password))
+                if (userService.IsUserExist(login, password))
                 {
-                    
+                    return Ok(tokenService.GenerateToken(login));
                 }
                 else 
                 {
