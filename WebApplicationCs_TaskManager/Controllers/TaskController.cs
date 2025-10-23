@@ -13,5 +13,19 @@ namespace WebApplicationCs_TaskManager.Controllers
         {
             return Ok();
         }
+
+        [HttpPost]
+        public ActionResult AddTextTask(string text, string? description = default)
+        {
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
     }
 }
