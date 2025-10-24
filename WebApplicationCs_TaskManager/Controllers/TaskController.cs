@@ -12,7 +12,7 @@ namespace WebApplicationCs_TaskManager.Controllers
     public class TaskController(TaskService _taskService) : ControllerBase
     {
 
-        [HttpPost]
+        [HttpPost("Add")]
         public async Task<ActionResult> AddTextTask(string text, string? description = default)
         {
             try
@@ -34,8 +34,8 @@ namespace WebApplicationCs_TaskManager.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<TextTask>>> GetAllTask(int userId)
+        [HttpGet("GetAll")]
+        public async Task<ActionResult<List<TextTask>>> GetAllTask()
         {
             try
             {

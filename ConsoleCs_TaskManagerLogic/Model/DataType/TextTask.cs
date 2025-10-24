@@ -6,6 +6,6 @@ namespace ConsoleCs_TaskManagerLogic.Model.DataType
     {
         public required int Id { get; init; }
         public required string Text { get; init; }
-        public required string Description { get; init; }
+        public required string Discription { get; init; }
     }
 }
