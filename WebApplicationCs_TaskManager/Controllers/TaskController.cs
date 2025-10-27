@@ -2,17 +2,16 @@
 using ConsoleCs_TaskManagerLogic.Model.DataType;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace WebApplicationCs_TaskManager.Controllers
 {
     [ApiController]
-    [Route("api")]
+    [Route("api/[controller]")]
     [Authorize]
     public class TaskController(TaskService _taskService) : ControllerBase
     {
 
-        [HttpPost("Add")]
+        [HttpPost]
         public async Task<ActionResult> AddTextTask(string text, string? description = default)
         {
             try
@@ -34,7 +33,7 @@ namespace WebApplicationCs_TaskManager.Controllers
             }
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("{login}")]
         public async Task<ActionResult<List<TextTask>>> GetAllTask()
         {
             try
@@ -42,7 +41,7 @@ namespace WebApplicationCs_TaskManager.Controllers
                 var login = User.FindFirst("name")?.Value;
                 if (login != null)
                 {
-                    List<TextTask> tasks =  await _taskService.GetAllTask(login);
+                    List<TextTask> tasks = await _taskService.GetAllTask(login);
                     return Ok(tasks);
                 }
                 else
