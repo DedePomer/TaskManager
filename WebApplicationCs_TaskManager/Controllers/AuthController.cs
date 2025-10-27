@@ -5,7 +5,7 @@ namespace WebApplicationCs_TaskManager.Controllers
 {
     [ApiController]
     [Route("auth")]
-    public class AuthController(IUserService userService, ITokenService tokenService) : Controller
+    public class AuthController(IUserService userService, ITokenService tokenService, ILogger<AuthController> logger) : Controller
     {        
         [HttpPost]
         public ActionResult Authenticate(string login, string password)
@@ -14,10 +14,12 @@ namespace WebApplicationCs_TaskManager.Controllers
             {
                 if (userService.IsUserExist(login, password))
                 {
+                    logger.LogInformation("Generation token");
                     return Ok(tokenService.GenerateToken(login));
                 }
                 else 
                 {
+                    logger.LogInformation("Invalid login or password");
                     return Unauthorized("Invalid login or password");
                 }
             }

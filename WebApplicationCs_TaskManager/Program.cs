@@ -1,6 +1,8 @@
 
 using ConsoleCs_TaskManagerLogic.Infrastructure.DataBase;
 using ConsoleCs_TaskManagerLogic.Infrastructure.Extensions;
+using Serilog;
+using Serilog.Events;
 
 namespace WebApplicationCs_TaskManager
 {
@@ -19,9 +21,15 @@ namespace WebApplicationCs_TaskManager
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            
+
+            Log.Logger = new LoggerConfiguration()
+               .MinimumLevel.Information()
+               .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+               .WriteTo.Console()
+               .CreateLogger();
 
             builder.Logging.ClearProviders();
+            builder.Logging.AddSerilog();
 
             var app = builder.Build();
 
