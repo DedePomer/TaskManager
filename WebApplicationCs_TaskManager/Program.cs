@@ -28,6 +28,7 @@ namespace WebApplicationCs_TaskManager
                .WriteTo.Console()
                .CreateLogger();
 
+
             builder.Logging.ClearProviders();
             builder.Logging.AddSerilog();
 
@@ -45,13 +46,14 @@ namespace WebApplicationCs_TaskManager
             }
 
             app.UseHttpsRedirection();
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
 
 
 
             app.MapControllers();
+
 
             app.Run();
         }
