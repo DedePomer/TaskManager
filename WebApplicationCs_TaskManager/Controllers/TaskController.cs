@@ -10,7 +10,6 @@ namespace WebApplicationCs_TaskManager.Controllers
     [Authorize]
     public class TaskController(TaskService _taskService) : ControllerBase
     {
-
         [HttpPost]
         public async Task<ActionResult> AddTextTask(string text, string? description = default)
         {
