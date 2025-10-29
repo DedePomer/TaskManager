@@ -36,7 +36,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 
             int count = await dbConnection.ExecuteScalarAsync<int>(new CommandDefinition("""
 
-                SELECT COUNT(*) FROM users
+                SELECT COUNT(*) FROM TextTasks
                 
                 """));
 

@@ -56,7 +56,7 @@ namespace WebApplicationCs_TaskManager.Controllers
         }
 
         [HttpPost("service/count")]
-        public async Task<ActionResult> GetCountTask([FromBody] ApiAuthSettings settings)
+        public async Task<ActionResult<int>> GetCountTask([FromBody] ApiAuthSettings settings)
         {
             try
             {
