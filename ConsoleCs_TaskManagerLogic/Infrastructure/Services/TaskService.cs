@@ -24,8 +24,11 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Services
             }
             throw new NotImplementedException();
         }
-            
 
+        public async Task<int> GetCount()
+        {
+            return await _taskRepository.GetCountTask();
+        }
 
     }
 }

@@ -2,7 +2,7 @@
 {
     public class ApiAuthSettings
     {
-        public required int Id { get; init; }
-        public required string Secret { get; init; }
+        public required string Id { get; init; }
+        public required byte[] Secret { get; init; }
     }
 }

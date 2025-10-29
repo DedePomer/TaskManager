@@ -55,6 +55,16 @@ namespace WebApplicationCs_TaskManager.Controllers
             }
         }
 
-        public async Task<ActionResult<List<TextTask>>> GetCountTask()
+        public async Task<ActionResult<List<TextTask>>> GetCountTask([FromBody] ApiAuthSettings settings)
+        {
+            try
+            {
+                
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
     }
 }

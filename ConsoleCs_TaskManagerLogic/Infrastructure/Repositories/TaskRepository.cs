@@ -30,6 +30,19 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<int> GetCountTask()
+        {
+            using var dbConnection = connection.CreateConnection();
+
+            int count = await dbConnection.ExecuteScalarAsync<int>(new CommandDefinition("""
+
+                SELECT COUNT(*) FROM users
+                
+                """));
+
+            return count;
+        }
+
         public async Task<IEnumerable<TextTask>> GetTasksAsync(int userId)
         {
             using var dbConnection = connection.CreateConnection();

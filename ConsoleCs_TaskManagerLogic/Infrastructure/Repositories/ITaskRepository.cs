@@ -8,5 +8,8 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
         Task<IEnumerable<TextTask>> GetTasksAsync(int userId);
         Task AddTextTaskAsync(string text, int userId, string? description = default);
         Task DeleteTaskAsync(int id);
+        Task<int> GetCountTask();
+
+
     }
 }
