@@ -35,6 +35,36 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.DataBase
                 );
                 """);
 
+            connection.Execute("""
+                CREATE TABLE If NOT EXISTS ApiKeys
+                (
+                    id TEXT PRIMARY KEY DEFAULT (
+                    strftime('%Y%m%d%H%M%f', 'now') || '_' || substr(hex(randomblob(4)), 1, 6)),
+                    secret blob                   
+                );
+                """);
+
+            var keysCount = connection.ExecuteScalar<int>("""
+
+                SELECT COUNT(*) FROM ApiKeys   
+
+                """);
+            if (keysCount == 0)
+            {
+                const string secret = "MyServiceSecret";
+
+                connection.Execute(new CommandDefinition("""
+
+                    INSERT INTO ApiKeys (secret)
+                    VALUES  
+                    (@Secret)
+
+                    """,
+                    new
+                    {
+                        Secret = HashHelper.GetHash(secret)                        
+                    }));
+            }
 
 
             var userCount = connection.ExecuteScalar<int>("""

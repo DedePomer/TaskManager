@@ -1,6 +1,7 @@
 ﻿using ConsoleCs_TaskManagerLogic.Infrastructure.Services;
 using ConsoleCs_TaskManagerLogic.Model.DataType;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace WebApplicationCs_TaskManager.Controllers
 {
@@ -30,24 +31,24 @@ namespace WebApplicationCs_TaskManager.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult ApiAuthenticate([FromBody] ApiAuthSettings settings)
-        {
-            try
-            {
-                if ()
-                {
-
-                }
-                else
-                {
-
-                }
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
-        }
+        //[HttpPost]
+        //public ActionResult ApiAuthenticate([FromBody] ApiAuthSettings settings)
+        //{
+        //    try
+        //    {
+        //        if (/*apiAuthService.IsValid(settings)*/ true)
+        //        {
+        //            return Ok(/*tokenService.GenerateToken()*/);
+        //        }
+        //        else
+        //        {
+        //            return Unauthorized();
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return StatusCode(500, e.Message);
+        //    }
+        //}
     }
 }
