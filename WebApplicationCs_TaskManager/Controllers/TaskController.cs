@@ -7,7 +7,7 @@ namespace WebApplicationCs_TaskManager.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]   
-    public class TaskController(TaskService _taskService) : ControllerBase
+    public class TaskController(TaskService _taskService, ApiService apiService) : ControllerBase
     {
         [Authorize]
         [HttpPost]
@@ -55,11 +55,19 @@ namespace WebApplicationCs_TaskManager.Controllers
             }
         }
 
-        public async Task<ActionResult<List<TextTask>>> GetCountTask([FromBody] ApiAuthSettings settings)
+        [HttpPost("service/count")]
+        public async Task<ActionResult> GetCountTask([FromBody] ApiAuthSettings settings)
         {
             try
             {
-                
+                if (await apiService.IsApiKeyExistAsync(settings))
+                {
+                    return Ok(await _taskService.GetCount());
+                }
+                else
+                {
+                    return Unauthorized();
+                }
             }
             catch (Exception e)
             {
