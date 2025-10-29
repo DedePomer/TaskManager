@@ -7,7 +7,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
     public class ApiRepository(IDbConnectionFactory connection) : IApiRepository
     {
 
-        public async void AddApiKeyAsync(string secret)
+        public async Task AddApiKeyAsync(string secret)
         {
             using var dbConnection = connection.CreateConnection();
 
