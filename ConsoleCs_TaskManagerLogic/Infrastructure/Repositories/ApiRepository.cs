@@ -1,6 +1,8 @@
 ﻿using ConsoleCs_TaskManagerLogic.Infrastructure.DataBase;
 using ConsoleCs_TaskManagerLogic.Infrastructure.Helpers;
+using ConsoleCs_TaskManagerLogic.Model.DataType;
 using Dapper;
+using System.Data.Common;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 {
@@ -22,6 +24,26 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
                    {
                        Secret = HashHelper.GetHash(secret)
                    }));
+        }
+
+        public async Task<bool> IsApiKeyExistAsync(ApiAuthSettings settings)
+        {
+            using var dbConnection = connection.CreateConnection();
+
+            bool isExist = await dbConnection.ExecuteScalarAsync<bool>(new CommandDefinition("""
+
+                SELECT EXISTS
+                ( SELECT 1 FROM ApiKeys
+                 WHERE id = @Id AND secret = @Secret);
+                
+                """,
+                new
+                {
+                    Id = settings.Id,
+                    Secret = settings.Secret
+                }));
+
+            return isExist;
         }
     }
 }
