@@ -30,7 +30,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<TextTask>> GetAllTaskAsync(int userId)
+        public async Task<IEnumerable<TextTask>> GetTasksAsync(int userId)
         {
             using var dbConnection = connection.CreateConnection();
 

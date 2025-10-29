@@ -14,12 +14,12 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Services
             }
         }
 
-        public async Task<List<TextTask>> GetAllTask(string login)
+        public async Task<List<TextTask>> GetTasksAsync(string login)
         {
             int userId = _userRepository.GetUserIdByName(login);
             if (userId != 0)
             {
-                IEnumerable<TextTask> tasks =  await _taskRepository.GetAllTaskAsync(userId);
+                IEnumerable<TextTask> tasks =  await _taskRepository.GetTasksAsync(userId);
                 return tasks.ToList();
             }
             throw new NotImplementedException();

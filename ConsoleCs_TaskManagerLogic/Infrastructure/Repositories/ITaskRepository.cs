@@ -5,7 +5,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 {
     public interface ITaskRepository
     {
-        Task<IEnumerable<TextTask>> GetAllTaskAsync(int userId);
+        Task<IEnumerable<TextTask>> GetTasksAsync(int userId);
         Task AddTextTaskAsync(string text, int userId, string? description = default);
         Task DeleteTaskAsync(int id);
     }
