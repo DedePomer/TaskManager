@@ -10,9 +10,11 @@ namespace WebApplicationCs_TaskManager.Controllers
     public class RegistrationController : Controller
     {
         private readonly IUserService _userService;
-        public RegistrationController(IUserService userService)
+        private readonly ApiService _apiService;
+        public RegistrationController(IUserService userService, ApiService apiService)
         {
             _userService = userService;
+            _apiService = apiService;
         }
 
         [HttpPost]
@@ -37,13 +39,14 @@ namespace WebApplicationCs_TaskManager.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("api")]
         [Authorize(Policy = "CreateApiConnectionPolicy")]
-        public ActionResult RegistrationApi(string secret)
+        public async Task<ActionResult> RegistrationApiAsync([FromBody]string secret)
         {
             try
             {
-                
+                await _apiService.RegisterApiKeyAsync(secret);
+                return Ok();
             }
             catch (Exception e)
             {

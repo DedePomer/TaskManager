@@ -10,7 +10,7 @@ namespace WebApplicationCs_TaskManager.Controllers
     public class AuthController(IUserService userService, ITokenService tokenService, ILogger<AuthController> logger) : Controller
     {
         [HttpPost]
-        public ActionResult Authenticate(string login, [FromBody] string password)
+        public ActionResult Authenticate(string login, string password)
         {
             try
             {
@@ -29,26 +29,6 @@ namespace WebApplicationCs_TaskManager.Controllers
             {
                 return StatusCode(500, e.Message);
             }
-        }
-
-        //[HttpPost]
-        //public ActionResult ApiAuthenticate([FromBody] ApiAuthSettings settings)
-        //{
-        //    try
-        //    {
-        //        if (/*apiAuthService.IsValid(settings)*/ true)
-        //        {
-        //            return Ok(/*tokenService.GenerateToken()*/);
-        //        }
-        //        else
-        //        {
-        //            return Unauthorized();
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return StatusCode(500, e.Message);
-        //    }
-        //}
+        }        
     }
 }

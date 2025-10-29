@@ -31,7 +31,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Extensions
                     policy.RequireAssertion(context =>
                     {
                         var nickname = context.User.FindFirst("name")?.Value;
-                        return nickname == configuration["ApiKeyCreatorUser"];
+                        return nickname == configuration["ApiKeyCreator"];
                     }));
             });
         }

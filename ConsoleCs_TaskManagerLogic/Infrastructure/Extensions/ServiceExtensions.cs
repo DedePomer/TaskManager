@@ -15,8 +15,10 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Extensions
 
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<ITaskRepository, TaskRepository>();
+            services.AddSingleton<IApiRepository, ApiRepository>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<TaskService>();// чёта не захотелось делать интерфе
+            services.AddSingleton<ApiService>();
 
             services.AddScoped<ITokenService, JwtService>();
             services.Configure<AuthSettings>(configuration.GetSection("AuthSettings"));
