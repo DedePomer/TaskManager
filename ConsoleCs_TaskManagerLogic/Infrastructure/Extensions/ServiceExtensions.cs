@@ -22,7 +22,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Extensions
 
             services.AddScoped<ITokenService, JwtService>();
             services.Configure<AuthSettings>(configuration.GetSection("AuthSettings"));
-            services.Configure<ApiAuthSettings>(configuration.GetSection("ServiceSetting"));
+            services.Configure<ApiAuthSettingsBase>(configuration.GetSection("ServiceSetting"));
         }
     }
 }

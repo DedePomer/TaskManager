@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.Marshalling;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.Helpers
 {
@@ -19,6 +14,12 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Helpers
                 hash = sha.ComputeHash(textBytes);
             }
 
+            return hash;
+        }
+
+        internal static byte[] GetHashFromString(string textHash)
+        {
+            byte[] hash = Convert.FromBase64String(textHash);
             return hash;
         }
     }

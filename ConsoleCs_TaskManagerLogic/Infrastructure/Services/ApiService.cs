@@ -1,4 +1,5 @@
-﻿using ConsoleCs_TaskManagerLogic.Infrastructure.Repositories;
+﻿using ConsoleCs_TaskManagerLogic.Infrastructure.Helpers;
+using ConsoleCs_TaskManagerLogic.Infrastructure.Repositories;
 using ConsoleCs_TaskManagerLogic.Model.DataType;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.Services
@@ -11,8 +12,13 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Services
         }
 
         public async Task<bool> IsApiKeyExistAsync(ApiAuthSettings settings)
-        { 
-            return  await apiRepository.IsApiKeyExistAsync(settings);
+        {
+            ApiAuthSettingsBase settingsBase = new ApiAuthSettingsBase() 
+            { 
+                Id = settings.Id,
+                Secret = HashHelper.GetHashFromString(settings.Secret)
+            };
+            return  await apiRepository.IsApiKeyExistAsync(settingsBase);
         }
     }
 }

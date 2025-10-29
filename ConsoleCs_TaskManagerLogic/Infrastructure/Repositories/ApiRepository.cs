@@ -26,7 +26,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
                    }));
         }
 
-        public async Task<bool> IsApiKeyExistAsync(ApiAuthSettings settings)
+        public async Task<bool> IsApiKeyExistAsync(ApiAuthSettingsBase settings)
         {
             using var dbConnection = connection.CreateConnection();
 
