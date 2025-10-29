@@ -1,5 +1,7 @@
 ﻿using ConsoleCs_TaskManagerLogic.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace WebApplicationCs_TaskManager.Controllers
 {
@@ -23,11 +25,26 @@ namespace WebApplicationCs_TaskManager.Controllers
                     _userService.RegisterUser(login, password);
                     return Ok();
                 }
-                else 
+                else
                 {
                     return Conflict("User with this login already exists");
                 }
+
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult RegistrationApi(string secret)
+        {
+            try
+            {
                 
+
             }
             catch (Exception e)
             {

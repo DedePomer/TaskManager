@@ -23,6 +23,17 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Extensions
                         .GetBytes(configuration["AuthSettings:SecretKey"]!)),
                     };
                 });
+
+            //авторизация должна быть в другом екстеншене
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy =>
+                    policy.RequireAssertion(context =>
+                    {
+                        var nickname = context.User.FindFirst("name")?.Value;
+                        return nickname == configuration["ApiKeyCreatorUser"];
+                    }));
+            });
         }
     }
 }
