@@ -38,13 +38,12 @@ namespace WebApplicationCs_TaskManager.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Policy = "CreateApiConnectionPolicy")]
         public ActionResult RegistrationApi(string secret)
         {
             try
             {
                 
-
             }
             catch (Exception e)
             {

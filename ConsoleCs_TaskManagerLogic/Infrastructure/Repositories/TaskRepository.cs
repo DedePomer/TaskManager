@@ -4,13 +4,13 @@ using Dapper;
 
 namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 {
-    public class TaskRepository(IDbConnectionFactory _connection) : ITaskRepository
+    public class TaskRepository(IDbConnectionFactory connection) : ITaskRepository
     {
         public async Task AddTextTaskAsync(string text, int userId, string? description = null)
         {
-            using var connection = _connection.CreateConnection();
+            using var dbConnection = connection.CreateConnection();
 
-            await connection.ExecuteAsync(new CommandDefinition("""
+            await dbConnection.ExecuteAsync(new CommandDefinition("""
 
                     INSERT INTO TextTasks (text, discription, userId)
                     VALUES  
@@ -32,9 +32,9 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Repositories
 
         public async Task<IEnumerable<TextTask>> GetAllTaskAsync(int userId)
         {
-            using var connection = _connection.CreateConnection();
+            using var dbConnection = connection.CreateConnection();
 
-            IEnumerable<TextTask> tasks = await connection.QueryAsync<TextTask>(new CommandDefinition("""
+            IEnumerable<TextTask> tasks = await dbConnection.QueryAsync<TextTask>(new CommandDefinition("""
 
                 SELECT * FROM TextTasks
                 WHERE userId = @UserId;

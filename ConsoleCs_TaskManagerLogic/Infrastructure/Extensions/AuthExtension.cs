@@ -27,7 +27,7 @@ namespace ConsoleCs_TaskManagerLogic.Infrastructure.Extensions
             //авторизация должна быть в другом екстеншене
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("AdminPolicy", policy =>
+                options.AddPolicy("CreateApiConnectionPolicy", policy =>
                     policy.RequireAssertion(context =>
                     {
                         var nickname = context.User.FindFirst("name")?.Value;
